@@ -9,6 +9,8 @@ use yii\widgets\ActiveForm;
 /* @var $model shoxabbos\news\models\News */
 /* @var $form yii\widgets\ActiveForm */
 
+\shoxabbos\news\NewsAsset::register($this);
+$this->registerJs("tinymce.init({ selector:'textarea' });");
 ?>
 
 <div class="news-form">

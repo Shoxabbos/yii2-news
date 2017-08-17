@@ -41,14 +41,18 @@ $this->params['breadcrumbs'][] = $this->title;
                     'attribute' => 'photo',
                     'format' => 'raw',
                     'value' => function ($model) {
-                        return Html::img(Yii::getAlias('@web')."/".$model->photo);
+                        return Html::img(Yii::getAlias('@web')."/".$model->photo, ['class' => 'view-image']);
                     }
                 ],
                 'views',
                 'date',
             ],
         ]) ?>
-
-
     </div>
 </div>
+
+<style>
+.view-image {
+    max-width: 100%;
+}
+</style>
