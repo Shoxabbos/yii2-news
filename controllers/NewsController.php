@@ -16,6 +16,11 @@ use yii\web\UploadedFile;
 class NewsController extends Controller
 {
 
+    public function getViewPath()
+    {
+        return '@shoxabbos/config/views/config';
+    }
+
     /**
      * @inheritdoc
      */

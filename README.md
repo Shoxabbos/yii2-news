@@ -33,10 +33,19 @@ php yii migrate --migrationPath=@vendor/shoxabbos/yii2-news/migrations
 
 ```php
 'modules' => [
-    'news' => [
-        'class' => '\shoxabbos\news\Module',
-        'layoutPath' => '@app/modules/admin/views/layouts',
-        'layout' => 'admin'
-    ]
+    'admin' => [
+        'class' => 'app\modules\admin\Module',
+        'controllerMap' => [
+            'config' => 'shoxabbos\news\controllers\NewsController'
+        ]
+    ],
 ]
+```
+
+After that, you can open the pages as:
+```php
+/admin/news/create
+/admin/news/update
+/admin/news/view
+/admin/news/index
 ```
