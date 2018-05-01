@@ -18,7 +18,7 @@ class NewsController extends Controller
 
     public function getViewPath()
     {
-        return '@shoxabbos/config/views/config';
+        return '@shoxabbos/news/views/news';
     }
 
     /**
