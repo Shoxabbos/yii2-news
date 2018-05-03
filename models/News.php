@@ -29,27 +29,42 @@ class News extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    function behaviors()
+    {
+        return [
+            [
+                'class' => UploadBehavior::className(),
+                'attribute' => 'photo',
+                'scenarios' => ['insert', 'update'],
+                'path' => '@webroot/uploads/news/{id}',
+                'url' => '@web/uploads/news/{id}',
+                'thumbs' => [
+                    'news_thumb' => ['width' => 110, 'height' => 110, 'bg_color' => 'fff'],
+                ],
+            ],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules()
     {
         return [
             [['title', 'content'], 'required'],
             [['content'], 'string'],
             [['views'], 'integer'],
+            [['views'], 'default', 'value' => 0],
             [['date'], 'safe'],
-            [['title', 'photo'], 'string', 'max' => 255],
+            [['title'], 'string', 'max' => 255],
             ['date', 'default', 'value' => date("Y-m-d H:i")],
+
+            // on
+            ['photo', 'image', 'extensions' => 'jpg, jpeg, gif, png', 'on' => ['insert', 'update']],
+            ['photo', 'required', 'on' => ['insert']],
         ];
     }
 
-    public function fields()
-    {
-        $data = parent::fields();
-
-        unset($data['photo']);
-        $data['photoUrl'] = 'photoUrl';
-
-        return $data;
-    }
 
     /**
      * @inheritdoc
@@ -64,31 +79,6 @@ class News extends \yii\db\ActiveRecord
             'views' => 'Views',
             'date' => 'Date',
         ];
-    }
-
-    public function getPhotoUrl()
-    {
-        if (is_file($this->photo)) {
-            return Yii::$app->request->hostInfo."/".$this->photo;
-        } else {
-            return false;
-        }
-    }
-
-    public function uploadFile()
-    {
-        if (is_object($this->photo)) {
-            $name = 'uploads/' . md5($this->photo->baseName.rand())  . '.' . $this->photo->extension;
-            if ($this->photo->saveAs($name)) {
-
-                if ($this->getOldAttribute("photo")) {
-                    is_file($this->getOldAttribute("photo")) && unlink($this->getOldAttribute("photo"));
-                }
-
-                chmod($name, 0777);
-                $this->photo = $name;
-            }
-        } else $this->photo = $this->getOldAttribute("photo");
     }
 
 }

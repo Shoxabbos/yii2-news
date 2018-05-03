@@ -71,12 +71,9 @@ class NewsController extends Controller
     public function actionCreate()
     {
         $model = new News();
-        if ($model->load(Yii::$app->request->post())) {
-            $model->photo = UploadedFile::getInstance($model, 'photo');
-            $model->uploadFile();
-            if ($model->validate() && $model->save(false)) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+        $model->setScenario('insert');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -93,13 +90,9 @@ class NewsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->photo = UploadedFile::getInstance($model, 'photo');
-            $model->uploadFile();
-            if ($model->validate() && $model->save(false)) {
-                return $this->redirect(['view', 'id' => $model->id]);
-            }
+        $model->setScenario('update');
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
         }
 
         return $this->render('create', [
