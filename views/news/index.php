@@ -7,17 +7,16 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\news\NewsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'News';
+$this->title = 'Новости';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="box">
     <div class="box-header with-border">
-        <h3 class="box-title"> <?=$this->title?> </h3>
-
-        <div class="box-tools pull-right">
-            <?= Html::a('Create News', ['create'], ['class' => 'btn btn-link']) ?>
-        </div>
+        <h3 class="box-title">
+            <?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success pull-right']) ?>
+            <?=$this->title?>
+        </h3>
     </div>
 
     <div class="box-body">

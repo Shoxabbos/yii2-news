@@ -29,17 +29,17 @@ class News extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
-    function behaviors()
+    public function behaviors()
     {
         return [
             [
-                'class' => UploadBehavior::className(),
+                'class' => \mongosoft\file\UploadImageBehavior::className(),
                 'attribute' => 'photo',
                 'scenarios' => ['insert', 'update'],
                 'path' => '@webroot/uploads/news/{id}',
                 'url' => '@web/uploads/news/{id}',
                 'thumbs' => [
-                    'news_thumb' => ['width' => 110, 'height' => 110, 'bg_color' => 'fff'],
+                    'thumb' => ['width' => 110, 'height' => 110, 'bg_color' => 'fff'],
                 ],
             ],
         ];
@@ -73,11 +73,11 @@ class News extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'content' => 'Content',
-            'photo' => 'Photo',
-            'views' => 'Views',
-            'date' => 'Date',
+            'title' => 'Заголовок',
+            'content' => 'Контент',
+            'photo' => 'Картинка',
+            'views' => 'Просмотры',
+            'date' => 'Дата',
         ];
     }
 

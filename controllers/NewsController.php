@@ -8,7 +8,6 @@ use shoxabbos\news\models\NewsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
  * NewsController implements the CRUD actions for News model.

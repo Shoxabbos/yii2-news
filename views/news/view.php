@@ -37,13 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'id',
                 'title',
                 'content:ntext',
-                [
-                    'attribute' => 'photo',
-                    'format' => 'raw',
-                    'value' => function ($model) {
-                        return Html::img(Yii::getAlias('@web')."/".$model->photo, ['class' => 'view-image']);
-                    }
-                ],
+                'photo',
                 'views',
                 'date',
             ],
