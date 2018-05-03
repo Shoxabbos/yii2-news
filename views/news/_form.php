@@ -19,17 +19,11 @@ $this->registerJs("tinymce.init({ selector:'textarea' });");
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'desc')->textarea(['rows' => 5])?>
+
     <?= $form->field($model, 'content')->textarea(['rows' => 10])?>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <?= $form->field($model, 'photo')->fileInput() ?>
-        </div>
-        <div class="col-sm-4">
-            <?= $form->field($model, 'views')->textInput() ?>
-        </div>
-    </div>
-
+    <?= $form->field($model, 'photo')->fileInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>

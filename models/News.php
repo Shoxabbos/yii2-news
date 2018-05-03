@@ -15,6 +15,7 @@ use yii\web\UploadedFile;
  * @property UploadedFile $photo
  * @property int $views
  * @property string $date
+ * @property string $desc
  */
 class News extends \yii\db\ActiveRecord
 {
@@ -51,8 +52,8 @@ class News extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'content'], 'required'],
-            [['content'], 'string'],
+            [['title', 'content', 'desc'], 'required'],
+            [['content', 'desc'], 'string'],
             [['views'], 'integer'],
             [['views'], 'default', 'value' => 0],
             [['date'], 'safe'],
@@ -74,6 +75,7 @@ class News extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'title' => 'Заголовок',
+            'desc' => 'Описание',
             'content' => 'Контент',
             'photo' => 'Картинка',
             'views' => 'Просмотры',
